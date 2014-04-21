@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+#
+#  Copyright 2014 Piotr Skonieczka <skoczek@mat.umk.pl>
+#
 
 from kivy.utils import platform
 
@@ -17,7 +20,6 @@ from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition, FadeTransition
 
 from menu import MenuScreen, MENU
-# zadanka
 from list_of_exercises import EXERCISES_LIST
 
 
