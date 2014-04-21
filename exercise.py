@@ -7,6 +7,7 @@ from kivy.properties import StringProperty, ObjectProperty, BooleanProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.screenmanager import FadeTransition, SlideTransition
 
+from core import MENU_SCREEN_NAME as MENU
 from database import DataBase
 
 

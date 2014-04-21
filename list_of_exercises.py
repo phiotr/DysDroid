@@ -4,12 +4,13 @@
 #  
 
 # 
-"""
-from cards import CardsExercise
+
+from card_game_exercise import CardGameExercise
 from cardswidgets import TicCard, TicTextCard, FlippCard, FlippTextCard
 
+
 ORTOMEMO_SET = "index/img_img_obrazki.txt"
-Ortomemo = CardsExercise(
+Ortomemo = CardGameExercise(
     name=u"Ortomemo",
     desc=u"Połącz jednakowe obrazki w pary.",
     icon="res/icons/menu/ortomemo.png",
@@ -20,7 +21,7 @@ Ortomemo = CardsExercise(
 )
 
 ANTONYMS_SET="index/txt_txt_antonimy.txt"
-Antonimy = CardsExercise(
+Antonimy = CardGameExercise(
     name=u"Antonimy",
     desc=u"Wśród podanych wyrazów odszukaj pary wyrazów o przeciwnym znaczeniu.",
     icon="res/icons/menu/antonimy.png",
@@ -32,7 +33,7 @@ Antonimy = CardsExercise(
 )
 
 ORTOGRAFIKI_SET="index/img_txt_obrazki.txt"
-Ortografiki = CardsExercise(
+Ortografiki = CardGameExercise(
     name=u"Ortografiki",
     desc=u"Połącz w pary obrazki i opisujące je słowa.",
     icon="res/icons/menu/ortografy.png",
@@ -43,7 +44,7 @@ Ortografiki = CardsExercise(
     game_options={'Engine1': FlippCard, 'Engine2': FlippTextCard},
 )
 
-Liczebniki = CardsExercise(
+Liczebniki = CardGameExercise(
     name=u"Liczebniki",
     desc=u"Połącz w pary liczby i odpowiadające im liczebniki główne.",
     icon="res/icons/menu/liczebniki.png",
@@ -55,7 +56,7 @@ Liczebniki = CardsExercise(
 )
 
 VARIETY_SET="index/txt_txt_odmiana.txt"
-Odmiana = CardsExercise(
+Odmiana = CardGameExercise(
     name=u"ó wymienne",
     desc=u"Połącz w pary wyrazy pokrewne.",
     icon="res/icons/menu/o_wymienne.png",
@@ -68,5 +69,3 @@ Odmiana = CardsExercise(
 
 # Pelna lista zadan
 EXERCISES_LIST = [Ortomemo, Antonimy, Ortografiki, Liczebniki, Odmiana, ]
-"""
-EXERCISES_LIST = []
