@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #  Copyright 2014 Piotr Skonieczka <skoczek@mat.umk.pl>
-#  
-
-# 
+#
 
 from card_game_exercise import CardGameExercise
 from cardswidgets import TicCard, TicTextCard, FlippCard, FlippTextCard
@@ -57,14 +55,14 @@ Liczebniki = CardGameExercise(
 
 VARIETY_SET="index/txt_txt_odmiana.txt"
 Odmiana = CardGameExercise(
-    name=u"ó wymienne",
+    name=u"Ó wymienne",
     desc=u"Połącz w pary wyrazy pokrewne.",
     icon="res/icons/menu/o_wymienne.png",
     table_name="odmiana",
     level1_set=VARIETY_SET,
     level2_set=VARIETY_SET,
     level3_set=VARIETY_SET,
-    game_options={'Engine1': FlippTextCard, 'Engine2': FlippTextCard},
+    game_options={'Engine1': FlippTextCard, 'Engine2': FlippTextCard, 'custom_notify': '/Ok#'},
 )
 
 # Pelna lista zadan
