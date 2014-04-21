@@ -54,7 +54,7 @@ class MenuScreen(Screen):
         Builder.load_file("kv/menu.kv")
         Builder.load_file("kv/cards.kv")
 
-        super(MenuScreen, self).__init__(*args, **kwargs)
+        Screen.__init__(self, *args, **kwargs)
 
         self.prev_exercise_bt.bind(on_release=lambda bt: self.scroll_to_prev())
         self.next_exercise_bt.bind(on_release=lambda bt: self.scroll_to_next())

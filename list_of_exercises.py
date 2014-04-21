@@ -49,9 +49,9 @@ Liczebniki = CardGameExercise(
     desc=u"Połącz w pary liczby i odpowiadające im liczebniki główne.",
     icon="res/icons/menu/liczebniki.png",
     table_name="liczebniki",
-    level1_set=range(1, 31),
-    level2_set=range(20,101),
-    level3_set=range(80,1000),
+    level1_set=xrange(1, 31),
+    level2_set=xrange(20,101),
+    level3_set=xrange(80,1000),
     game_options={'Engine1': TicTextCard, 'Engine2': TicTextCard, 'n_and_w': True, 'auto_play': True, 'allow_unselecting': True},
 )
 

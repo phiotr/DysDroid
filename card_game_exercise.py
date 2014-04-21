@@ -179,8 +179,6 @@ class GenericCardGame(Screen):
             @n_and_w - Jeśli ustawione na True, zostanie użyty pewien specjalny tryb losowania przykładów wyłącznie z pośród liczb, a nie z pliku jak w każdym innym przypadku
         """
 
-        #Builder.load_file("kv/cards.kv")
-
         Screen.__init__(self, **kwargs)
 
         self.level_number = level_number
