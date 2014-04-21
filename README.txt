@@ -24,3 +24,7 @@ Specjalne podziękowania dla:
 		wykonanie ikon w menu aplikacji oraz wsparcie techniczne
 
 	Bez was ten projekt by nie powstał! ;-)
+
+
+Licencja:
+	Common Public License (CPL)
