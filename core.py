@@ -43,6 +43,9 @@ COLOR_MAP = {
 
     '/dż#': "[color=#C0D727]dż[/color]",
     '/Dż#': "[color=#C0D727]Dż[/color]",
+
+    '/ok#': "[color=#00ff00]ok[/color]",
+    '/Ok#': "[color=#00ff00]Ok[/color]",
     }
 
 

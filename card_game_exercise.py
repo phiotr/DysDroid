@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #  Copyright 2014 Piotr Skonieczka <skoczek@mat.umk.pl>
-#  
+#
 
 from kivy.lang import Builder
 from kivy.properties import StringProperty, ObjectProperty, BooleanProperty, NumericProperty
@@ -18,7 +18,7 @@ from random import shuffle
 
 from cardspair import CardsPair
 from cardswidgets import FlippCard
-from core import CH_SCREEN, EX_SCREEN
+from core import CH_SCREEN, EX_SCREEN, parse_word
 from database import DataBase
 from exercise import Exercise
 
@@ -52,7 +52,7 @@ class GenericLevelChooser(Screen):
 
 class ClockLabel(Label):
     """Zegarek cyfrowy"""
-    
+
     # Wartości wyświetlane na zegarze
     c_min = NumericProperty(0)  # minuty
     c_sec = NumericProperty(0)  # sekundy
@@ -165,7 +165,7 @@ class GenericCardGame(Screen):
     notify = ObjectProperty(None)
     notify_timeout = NumericProperty(0)
 
-    def __init__(self, level_number, rows, cols, cards_set, level_icon, table_name, Engine1=FlippCard, Engine2=FlippCard, notify_timeout=2, auto_play=False, allow_unselecting=False, n_and_w=False, **kwargs):
+    def __init__(self, level_number, rows, cols, cards_set, level_icon, table_name, Engine1=FlippCard, Engine2=FlippCard, notify_timeout=2, auto_play=False, allow_unselecting=False, n_and_w=False, custom_notify="", **kwargs):
         """
         Parametry:
             @rows - liczba wierszy
@@ -177,6 +177,7 @@ class GenericCardGame(Screen):
             @play - Czy zegar ma zostać uruchomiony zaraz po otwarciu okna
             @allow_unselecting - Zezwalanie na odznaczenie karty po ponownym naduszeniu
             @n_and_w - Jeśli ustawione na True, zostanie użyty pewien specjalny tryb losowania przykładów wyłącznie z pośród liczb, a nie z pliku jak w każdym innym przypadku
+            @custom_confirm_msg - dodatkowy tekst wyswietlany w dymku po zaznaczeniu prawidlowej pary kart
         """
 
         Screen.__init__(self, **kwargs)
@@ -203,6 +204,9 @@ class GenericCardGame(Screen):
 
         # Przygotowanie dymku z wiadomoscia
         self.notify_timeout = notify_timeout
+        
+        # Niestandardowa tresc dymku
+        self.custom_notify = parse_word(custom_notify)
 
     def _create_examples(self, count, cards_set, Engine1, Engine2, numbers_and_words):
         """Wygenerowanie i umieszczenie przykładów do zadania"""
@@ -242,7 +246,7 @@ class GenericCardGame(Screen):
         # Jesli karat była już odgadnięta (albo nie wolno jej odznaczyć)
         if card.guessed or card in self.current_selected:
             return
-
+    
         else:
             # Odwracam kartę
             card.toggle()
@@ -266,7 +270,10 @@ class GenericCardGame(Screen):
                     # Jenda para więcej
                     self.pairs_guessed += 1
                     # Wyświetlenie balonika
-                    self.notify.set_msg(card.dsc, self.notify_timeout)
+                    if card.dsc:
+                        self.notify.set_msg(card.dsc, self.notify_timeout)
+                    if self.custom_notify:
+                        self.notify.set_msg(self.custom_notify, self.notify_timeout)
 
                 else:
                     self.current_selected.append(card)
@@ -316,7 +323,7 @@ class GenericCardGame(Screen):
 class CardGameExercise(Exercise):
     """
     Ogólna klasa definijuąca kompletne ćwiczenie przy użyciu kart.
-    
+
     Spójnik łączący elementy menu z właściwymi ekranami zadań.
     """
 
@@ -357,7 +364,7 @@ class CardGameExercise(Exercise):
     def launch_level(self, **options):
         """
         Uruchomienie cwiczenia na wskazanym poziomie
-            
+
             @options - konfiguracja zadania
                 level_number - poziom trudnosci
                 rows - liczba wierszy kraty

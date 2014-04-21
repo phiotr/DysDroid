@@ -41,7 +41,7 @@ Ortografiki = CardGameExercise(
     level1_set=ORTOGRAFIKI_SET,
     level2_set=ORTOGRAFIKI_SET,
     level3_set=ORTOGRAFIKI_SET,
-    game_options={'Engine1': FlippCard, 'Engine2': FlippTextCard},
+    game_options={'Engine1': FlippCard, 'Engine2': FlippTextCard, 'custom_notify': '/Ok#'},
 )
 
 Liczebniki = CardGameExercise(
