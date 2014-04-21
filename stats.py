@@ -44,13 +44,13 @@ class RowLabel(Label):
 
 
 class BestScoreLabel(Label):
-
+    """Etykieta najelszego uzyskanego wyniku dla danego stopnia trudnosci"""
     date = StringProperty()
     time = StringProperty()
     score = StringProperty()
 
     def __init__(self, best, **kwargs):
-        super(BestScoreLabel, self).__init__(**kwargs)
+        Label.__init__(self, **kwargs)
 
         self.date = best.date
         self.time = best.time
@@ -58,10 +58,10 @@ class BestScoreLabel(Label):
 
 
 class LevelTab(TabbedPanelItem):
-
+    """Jedna zakladka - jeden stopien trudnosci"""
+    
     def __init__(self, nr, table, **kwargs):
-
-        super(LevelTab, self).__init__(**kwargs)
+        TabbedPanelItem.__init__(self, **kwargs)
 
         self.text = "Poziom {n}".format(n=nr)
 
@@ -102,7 +102,8 @@ class LevelTab(TabbedPanelItem):
 
 
 class ScoresPopupContent(BoxLayout):
-
+    """Element `content` dla obiektu Popup"""
+    
     close_bt = ObjectProperty(None)
     tab_area = ObjectProperty(None)
 
