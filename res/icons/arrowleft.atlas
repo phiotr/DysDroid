@@ -1,0 +1,6 @@
+{
+    "arrowleft-0.png": {
+        "button_normal": [0,0,100,300],
+        "button_pressed": [100,0,100,300]
+    }
+}

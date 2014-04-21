@@ -1,0 +1,6 @@
+{
+    "arrowup-0.png": {
+        "button_normal": [0,100,300,100],
+        "button_pressed": [0,0,300,100]
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "levelbutton-0.png": { 
+        "button_normal": [0,0,200,200],
+        "button_pressed": [200,0,200,200],
+        "button_wide_normal": [0,300,400,100],
+        "button_wide_pressed": [0, 200, 400, 100]
+    }
+}
