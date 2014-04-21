@@ -179,7 +179,7 @@ class GenericCardGame(Screen):
             @n_and_w - Jeśli ustawione na True, zostanie użyty pewien specjalny tryb losowania przykładów wyłącznie z pośród liczb, a nie z pliku jak w każdym innym przypadku
         """
 
-        Builder.load_file("kv/cards.kv")
+        #Builder.load_file("kv/cards.kv")
 
         Screen.__init__(self, **kwargs)
 
@@ -313,10 +313,6 @@ class GenericCardGame(Screen):
         DataBase.insert_score(self.table_name, self.level_number, res)
 
 
-
-
-
-
 # .:: ------- GAME ENGINE ------- ::. #
 
 class CardGameExercise(Exercise):
@@ -361,6 +357,17 @@ class CardGameExercise(Exercise):
         self.sm.add_widget(lc)
 
     def launch_level(self, **options):
+        """
+        Uruchomienie cwiczenia na wskazanym poziomie
+            
+            @options - konfiguracja zadania
+                level_number - poziom trudnosci
+                rows - liczba wierszy kraty
+                cols - liczba kolumn kraty
+                cards_set - zbior kart do gry
+                level_icon - mala ikonka obrazujaca wybrany poziom trudnosci
+                *game_options - inne opcje przyjmowane przez klase `GenericCardGame`
+        """
 
         # Jeśli operacja nie jest zablokowana przez inne przejście SM
         if not self.lock:
@@ -371,7 +378,7 @@ class CardGameExercise(Exercise):
             if self.exercise and self.sm.has_screen(EX_SCREEN):
                 self.sm.remove_widget(self.exercise)
 
-            # <--------------- Tworzymy nowe --------------------------
+            # <--------------- Tworzymy nowe cwiczenie -----------------
             self.exercise = GenericCardGame(name=EX_SCREEN, **options)
 
             # i dodajemy do okna
@@ -388,6 +395,7 @@ class CardGameExercise(Exercise):
         self.sm.current = CH_SCREEN
 
     def back_to_top_exercise_screen(self):
+        """Reakcja na klawisz ESC wcisniety podczas gry"""
         current = self.sm.current
 
         # Jesli przycisnieto guzik wstecz będąc na ekranie poziomów trudności
@@ -400,7 +408,8 @@ class CardGameExercise(Exercise):
 
     def open_statistics(self):
         """Utworzenie i wyświetlenie okienka zawierającego najlepszy i kilka ostatnich wyników z danego ćwiczenia"""
+        from stats import ScoresPopupContent
 
-        self.stats = Popup(title=u"{t} - Wyniki".format(t=self.name), content=ExerciseScoresContent(table_name=self.table_name), size_hint_x=0.8)
-        self.stats.open()
-        self.stats.content.close_bt.bind(on_release=self.stats.dismiss)
+        st = Popup(title=u"{t} - Wyniki".format(t=self.name), content=ScoresPopupContent(table_name=self.table_name), size_hint_x=0.8)
+        st.open()
+        st.content.close_bt.bind(on_release=st.dismiss)

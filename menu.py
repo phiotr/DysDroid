@@ -50,7 +50,9 @@ class MenuScreen(Screen):
     ex_count = NumericProperty(0)
 
     def __init__(self, *args, **kwargs):
+        
         Builder.load_file("kv/menu.kv")
+        Builder.load_file("kv/cards.kv")
 
         super(MenuScreen, self).__init__(*args, **kwargs)
 
