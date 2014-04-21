@@ -1,0 +1,3 @@
+title=DysDroid
+author=phiotr
+orientation=landscape
