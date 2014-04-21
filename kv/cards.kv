@@ -1,0 +1,132 @@
+#:import ut kivy.utils
+
+<FlippCard>:
+    background_normal: ""
+
+    canvas:
+        Rectangle:
+            source: root.cover if root.flliped else root.front
+            size: (root.width, root.height) if root.flliped else (128, 128)
+            pos: (root.x, root.y) if root.flliped else (self.center_x - 64, self.center_y - 64)
+
+<FlippTextCard>:
+    background_normal: ""
+
+    text: "" if root.flliped else "[b][color=#000]{txt}[/color][/b]".format(txt=root.front)
+    markup: True
+    font_name: "DroidSans"
+    font_size: 28 if len(root.front) < 15 else 24
+    text_size: (self.width, None)
+    halign: "center"
+
+    canvas:
+        Rectangle:
+            source: root.cover if root.flliped else None
+            size: (root.width, root.height) if root.flliped else (0, 0)
+            pos: (root.x, root.y) if root.flliped else (self.x, self.y)
+
+<TicCard>:
+    #:set atlas "atlas://res/icons/cardbutton.atlas/"
+    background_normal: atlas + "selected" if (root.flliped and not root.guessed) else (atlas + "guessed" if root.guessed else "")
+
+    canvas:
+        Rectangle:
+            source: root.front if root.guessed else root.cover
+            size: (128, 128)
+            pos: (self.center_x - 64, self.center_y - 64)
+
+<TicTextCard>:
+    #:set atlas "atlas://res/icons/cardbutton.atlas/"
+    background_normal: atlas + "selected" if (root.flliped and not root.guessed) else (atlas + "guessed" if root.guessed else "")
+
+    text: "" if root.guessed else "[b][color=#000]{txt}[/color][/b]".format(txt=root.cover)
+    markup: True
+    font_name: "DroidSans"
+    font_size: 28 if len(root.front) < 15 else 24
+    text_size: (self.width, None)
+    halign: "center"
+
+    canvas:
+        Rectangle:
+            source: root.front if root.guessed else None
+            size: (128, 128) if root.guessed else (0, 0)
+            pos: (self.center_x -  64, self.center_y - 64) if root.guessed else (self.x, self.y)
+
+<ClockLabel>:
+    font_size: 40
+    font_name: "res/fonts/minisystem.regular.ttf"
+
+    text: "{m:>02}[color=#BBBBBB]:[/color]{s:>02}".format(m=root.c_min, s=root.c_sec)
+    markup: True
+    bold: True
+
+    canvas.before:
+        Rectangle:
+            source: "res/images/timer_area.png"
+            size: root.size
+            pos: root.pos
+
+<Toast>:
+    canvas.before:
+        Color:
+            # Kolor, jesli jest czas do wyswietlenia, przezroczyste jesli nic nie ma
+            rgba: (0.1, 0.1, 0.1, 0.95) if (root.hint_timeout and root.hint_msg) else (0, 0, 0, 0)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    text: root.hint_msg if root.hint_timeout > 0 else ""
+    font_size: 40
+    markup: True
+    bold: True
+
+<GenericCardsGame>:
+
+    card_grid: grid
+    timer: timer
+    notify: hint
+
+    canvas.before:
+
+        Rectangle:
+            source: "res/images/board.png"
+            pos: self.pos
+            size: self.size
+
+    GridLayout:
+        id: grid
+
+        cols: root.card_grid_cols
+        rows: root.card_grid_rows
+
+        spacing: 5, 5
+        padding: 5
+
+        size_hint: 1.0, 0.9
+        pos_hint: {'top': 1.0}
+
+    BoxLayout:
+        orientation: "horizontal"
+        size_hint: 1.0, 0.1
+        pos_hint: {'bottom': 0.1}
+
+        canvas.before:
+            Rectangle:
+                source: "res/images/game_panel.png"
+                size: self.size
+                pos: self.pos
+
+        Image:
+            source: root.level_icon
+
+        ClockLabel:
+            id: timer
+
+        Label:
+            text: "Zebrane: {g} / {t}".format(g=root.pairs_guessed, t=root.pairs_total)
+            font_size: 25
+    Toast:
+        id: hint
+
+        size_hint: (0.3, 0.15)
+        pos_hint: {'center_x': .5, 'center_y': 0.5}

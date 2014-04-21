@@ -1,0 +1,37 @@
+#:import ut kivy.utils
+#:set DEFAULT_FONT "DroidSans"
+
+<InfoLabel>:
+    font_name: DEFAULT_FONT
+
+<RowLabel>:
+    #:set odd "#303030"
+    #:set even "#505050"
+
+    markup: True
+    font_name: DEFAULT_FONT
+
+    canvas.before:
+        Color:
+            rgb: ut.get_color_from_hex(even if root.i % 2 else odd)
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<HeaderLabel>:
+    #:set bg "#202020"
+
+    font_name: DEFAULT_FONT
+
+    canvas.before:
+        Color:
+            rgb: ut.get_color_from_hex(bg)
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<BestScoreLabel>:
+    text: "[size=50][color=#00ff00]{s}[/color][/size]\n[color=#FFFF00]{d} {t}[/color]".format(s=root.score,d=root.date, t=root.time)
+    markup: True

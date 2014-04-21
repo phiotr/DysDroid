@@ -1,0 +1,78 @@
+[ArrowButton@Button]:
+    size_hint: None, 1.0
+    width: 100
+
+    background_normal: "atlas://{atlas}/button_normal".format(atlas=ctx.arrow_icon)
+    background_down: "atlas://{atlas}/button_pressed".format(atlas=ctx.arrow_icon)
+
+
+<MenuScreen>:
+
+    menu_sm: exercises_list
+    prev_exercise_bt: prev_exercise
+    next_exercise_bt: next_exercise
+    goto_exercise_bt: goto_exercise
+
+    canvas.before:
+
+        Rectangle:
+            source: "res/images/board.png"
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+
+        # Naglowek
+        Label:
+            id: header
+            text: "D y s D r o i d"
+            font_size: 100
+
+            size_hint: 1.0, 0.3
+            valign: "middle"
+
+        # Przewijany obszar wyboru zadanka
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: 1.0, 0.7
+            padding: 5
+            spacing: 5
+
+            ArrowButton:
+                id: prev_exercise
+                arrow_icon: "res/icons/arrowleft"
+
+            ScreenManager:
+                id: exercises_list
+
+            ArrowButton:
+                id: next_exercise
+                arrow_icon: "res/icons/arrowright"
+
+        #: set down_arrow "res/icons/arrowdown"
+        Button:
+            id: goto_exercise
+
+            background_normal: "atlas://{atlas}/button_normal".format(atlas=down_arrow)
+            background_down: "atlas://{atlas}/button_pressed".format(atlas=down_arrow)
+
+            size: root.width, 100
+            size_hint: 1.0, 0.15
+
+<MenuItem>:
+    BoxLayout:
+        orientation: "horizontal"
+
+        Image:
+            source: root.icon
+            size_hint: 0.5, 1.0
+
+        Label:
+            text: u"[size=35]{e_name}[/size]\n\n\n[size=20]{e_desc}[/size]".format(e_name=root.name, e_desc=root.desc)
+
+            markup: True
+            valing: "top"
+            haling: "left"
+            text_size: (self.width, None)
+            size_hint: 0.6, 1.0

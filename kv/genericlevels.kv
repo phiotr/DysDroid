@@ -1,0 +1,86 @@
+[LevelButton@Button]:
+    background_normal: "atlas://res/icons/levelbutton/button_normal"
+    background_down: "atlas://res/icons/levelbutton/button_pressed"
+
+    Image:
+        source: ctx.icon
+        center: root.center
+
+<Label>:
+    font_name: "res/fonts/Alabama.ttf"
+
+<GenericLevelChooser>:
+
+    back_bt: back
+
+    level_1_bt: level1
+    level_2_bt: level2
+    level_3_bt: level3
+    stats_bt: stats
+
+    canvas.before:
+
+        Rectangle:
+            source: "res/images/board.png"
+            pos: self.pos
+            size: self.size
+
+
+    # Guzik powrotu
+    Button:
+        id: back
+
+        pos_hint: {'top': 1.0}
+        size_hint: 1.0, 0.15
+
+        background_normal: "atlas://res/icons/buttonup/button_normal"
+        background_down: "atlas://res/icons/buttonup/button_pressed"
+
+
+    # Naglowek
+    Label:
+        id: header
+        text: root.title
+        font_size: 70
+        size_hint_y: 0.25
+        pos_hint: {'top': 0.85}
+
+    #:set margin 0.07
+    #:set col_spacing 50
+
+    BoxLayout:
+        orientation: "horizontal"
+
+        spacing: col_spacing
+
+        size_hint_x: 1.0 - 2 * margin
+        size_hint_y: 0.3
+        pos_hint: {'top': 0.6, 'left': margin, 'right': 1.0 - margin}
+
+
+        LevelButton:
+            id: level1
+            icon: "res/icons/level1.png"
+
+        LevelButton:
+            id: level2
+            icon: "res/icons/level2.png"
+
+        LevelButton:
+            id: level3
+            icon: "res/icons/level3.png"
+
+    #:set bmargin 0.25
+
+    Button:
+        id: stats
+
+        background_normal: "atlas://res/icons/levelbutton/button_wide_normal"
+        background_down: "atlas://res/icons/levelbutton/button_wide_pressed"
+
+        text: "[color={c}]<<  Najlepsze wyniki  >>[/color]".format(c="#E79E00" if self.state == "normal" else "#AC1B0D")
+        markup: True
+        font_size: 25
+        size_hint_y: 0.1
+        size_hint_x: 1.0 - 2 * bmargin
+        pos_hint: {'top': 0.2, 'left': bmargin, 'right': 1.0 - bmargin}
