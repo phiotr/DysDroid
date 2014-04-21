@@ -17,7 +17,7 @@ Lista ćwiczeń:
 
 
 Specjalne podziękowania dla:
-	- Sylwii Kosowicz - za konsultacje merytoryczne z dydaktykami 
+	- Sylwii Kosowicz - za konsultacje merytoryczne z nauczycielami 
 		j. polskiego oraz pomoc w przygotowaniu przykładów do zadań
 
 	- Jana Jasiewicza - za pomoc w projektowaniu szaty graficznej aplikacji, 
