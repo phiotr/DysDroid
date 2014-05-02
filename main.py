@@ -3,6 +3,7 @@
 #
 #  Copyright 2014 Piotr Skonieczka <skoczek@mat.umk.pl>
 #
+__version__ = '1.2'
 
 from kivy.utils import platform
 
