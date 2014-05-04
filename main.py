@@ -17,6 +17,7 @@ if platform() == 'linux':
 from kivy.app import App
 from kivy.base import EventLoop
 from kivy.lang import Builder
+from kivy.logger import Logger
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition, FadeTransition
 
@@ -30,6 +31,7 @@ class DysDroidApp(App):
     title = "DysDroid"
 
     def build(self):
+        Logger.info("Building application")
         # Najwyższy SM, odpowiedzialny za faktyczne przełączania zadań i menu
         root = ScreenManager()
 
@@ -42,14 +44,28 @@ class DysDroidApp(App):
         for e in EXERCISES_LIST:
             menu.add_exercise(e)
 
-        EventLoop.window.bind(on_keyboard=self.on_back_button)
+        EventLoop.window.bind(on_keyboard=self.on_back_button)        
 
         return root
 
     def on_pause(self):
-        return True
+        if self and self.root:
+            Logger.debug("** Pause **")
+            return True
+        else:
+            Logger.debug("Pause and no root")
+            return False
 
     def on_resume(self):
+        if self and self.root:
+            Logger.debug("** Resume **")
+            return True
+        else:
+            Logger.debug("Resume and no root")
+            return False
+    
+    def on_stop(self):
+        Logger.debug("Stoping...")
         return True
 
     def on_back_button(self, window, key, *largs):
