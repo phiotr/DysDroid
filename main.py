@@ -8,7 +8,7 @@ __version__ = '1.2'
 from kivy.utils import platform
 
 # Ręczne ustawienie FullScreen dla systemu Linux
-if platform() == 'linux':
+if platform == 'linux':
     from kivy.config import Config
     Config.set('graphics', 'width', '1280')
     Config.set('graphics', 'height', '752')
