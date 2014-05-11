@@ -3,6 +3,7 @@
 #  Copyright 2014 Piotr Skonieczka <skoczek@mat.umk.pl>
 #
 
+from kivy.logger import Logger
 from random import sample
 from core import parse_word, number_2_word
 
@@ -42,7 +43,7 @@ class CardsPair():
 
         # Jesli z jakis powodow nie udalo sie wygenreowac odpowiedniej ilosci par, to zwracamy - nic
         except Exception as e:
-            print e.message
+            Logger.debug(e.message)
             return []
 
     @staticmethod

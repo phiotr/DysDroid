@@ -70,7 +70,7 @@ class MenuScreen(Screen):
             self.menu_sm.current = self.menu_sm.next()
 
         else:
-            print "* nie ma co przewijac"
+            Logger.info("* nie ma co przewijac")
 
     def scroll_to_prev(self):
         """Przesuniecie na poprzednie cwiczenie"""
@@ -81,7 +81,7 @@ class MenuScreen(Screen):
             self.menu_sm.current = self.menu_sm.previous()
 
         else:
-            print "* nie ma co przewijac"
+            Logger.info("* nie ma co przewijac")
 
     def goto_exercise(self):
         """Przejście do wybranego ćwiczenia"""
@@ -94,7 +94,7 @@ class MenuScreen(Screen):
             self.manager.current = self.menu_sm.current
 
         except Exception as e:
-            print e.message
+            Logger.debug(e.message)
 
     def add_exercise(self, exercise):
         """Zarejestrowanie ćwiczenia w głównym menu"""
@@ -108,4 +108,4 @@ class MenuScreen(Screen):
             self.ex_count += 1
 
         else:
-            print "Error: `{}` nie jest poprawnym obiektem ćwiczenia.".format(exercise)
+            Logger.debug("Error: `{}` nie jest poprawnym obiektem ćwiczenia.".format(exercise))

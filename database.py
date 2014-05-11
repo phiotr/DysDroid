@@ -5,6 +5,7 @@
 
 import sqlite3
 import datetime
+from kivy.logger import Logger
 
 DB_FILE = "db/scores.sqlite"
 
@@ -75,7 +76,7 @@ class DataBase():
             conn.close()
 
         except Exception as e:
-            print e.message
+            Logger.debug(e.message)
 
     @classmethod
     def insert_score(self, table, level, score):
@@ -101,8 +102,7 @@ class DataBase():
             conn.close()
 
         except Exception as e:
-            print "Insert Error :("
-            print e.message
+            Logger.debug(e.message)
 
     @classmethod
     def get_best_score(self, table, lvl):
