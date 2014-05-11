@@ -1,7 +1,8 @@
 #:import ut kivy.utils
 
-<FlippCard>:
-    background_normal: ""
+<FlippCard>:    
+    #:set atlas "atlas://res/icons/cardbutton.atlas/"
+    background_normal: atlas + "pressed" if not (root.flliped or root.guessed) else ""
 
     canvas:
         Rectangle:
@@ -10,7 +11,8 @@
             pos: (root.x, root.y) if root.flliped else (self.center_x - 64, self.center_y - 64)
 
 <FlippTextCard>:
-    background_normal: ""
+    #:set atlas "atlas://res/icons/cardbutton.atlas/"
+    background_normal: atlas + "pressed" if not (root.flliped or root.guessed) else ""
 
     text: "" if root.flliped else "[b][color=#000]{txt}[/color][/b]".format(txt=root.front)
     markup: True
