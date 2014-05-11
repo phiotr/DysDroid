@@ -2,5 +2,9 @@
     "cardbutton-0.png": {
         "selected": [0,0,250,250],
         "guessed": [250, 0, 250, 250]
-    }
+    },
+
+	"cardbutton-1.png": {
+		"pressed": [0,0,250,250]
+	}
 }
