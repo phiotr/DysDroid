@@ -28,3 +28,13 @@ Specjalne podziękowania dla:
 
 Licencja:
 	Common Public License (CPL)
+
+
+Pobieranie oraz instalacja na urządzeniu mobilnym:
+
+	Instalator aplikacji na platformę Android dostępny jest do pobrania na 
+	stronie projektu:
+
+	http://www-users.mat.umk.pl/~skoczek/dysdroid/
+	
+
